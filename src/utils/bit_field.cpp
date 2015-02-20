@@ -16,9 +16,10 @@ void bit_field::pack_le_word(unsigned char* bytes, unsigned int bytes_per_word) 
 }
 
 void bit_field::pack_le_bits(unsigned int bytes_per_word, unsigned char* bytes, unsigned int num_bytes) {
+  unsigned int top = num_bytes - bytes_per_word;
   for (unsigned int i = 0; i < num_bytes; i += bytes_per_word) {
-    pack_le_word(bytes, bytes_per_word);
-    bytes += bytes_per_word;
+    pack_le_word(&(bytes[top]), bytes_per_word);
+    top -= bytes_per_word;
   }
 }
 
@@ -33,7 +34,19 @@ bit_field::bit_field(endianness end, unsigned int bytes_per_word, unsigned char*
   }
 }
 
+unsigned int bit_field::size() {
+  return bits.size();
+}
+
 bit bit_field::operator[](unsigned int i) {
   assert(bits.size() > i && i >= 0);
   return bits[i];
+}
+
+std::string bit_field::to_bit_string() {
+  std::string bit_string = "";
+  for (unsigned int i = 0; i < size(); i++) {
+    bit_string = (bits[i] == ZERO ? "0" : "1") + bit_string;
+  }
+  return bit_string;
 }
