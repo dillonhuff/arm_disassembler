@@ -1,6 +1,6 @@
 #include <assert.h>
 
-#include "bit_pattern.h"
+#include "utils/bit_pattern.h"
 
 bit_pattern::bit_pattern(std::vector<bit_p> bits) {
   pattern = bits;
