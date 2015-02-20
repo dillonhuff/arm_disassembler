@@ -21,7 +21,8 @@ std::unique_ptr<instruction_sequence> disassemble_arm7m(unsigned int start_addr,
   }
 
   auto instrs = new instruction_sequence(start_addr);
-  for (unsigned int i = 0; i < n; i++) {
+  unsigned int i = 0;
+  while (i < n) {
     auto word16 = bit_field(end, 2, &(bytes[i]), 2);
     if (is_start_of_32_bit_instruction(&word16)) {
       instrs->add(undefined_32());
