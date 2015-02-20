@@ -1,5 +1,5 @@
 UNAME := $(shell uname)
-DEP_CFLAGS := -O3 -g -Wall -Isrc/
+DEP_CFLAGS := -O3 -g -Wall -Isrc/ -Itest/
 CFLAGS := $(DEP_CFLAGS)
 CFLAGS += -std=c++11
 
