@@ -22,5 +22,6 @@ class instruction {
 instruction undefined_32();
 instruction lsl_16(int shift, int rm, int rd);
 instruction lsr_16(int shift, int rm, int rd);
+instruction asr_16(int shift, int rm, int rd);
 
 #endif

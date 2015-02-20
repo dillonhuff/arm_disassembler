@@ -35,3 +35,9 @@ instruction lsr_16(int shift, int rm , int rd) {
   instr.set_mnemonic("lsr");
   return instr;
 }
+
+instruction asr_16(int shift, int rm , int rd) {
+  auto instr = instruction();
+  instr.set_mnemonic("asr");
+  return instr;
+}

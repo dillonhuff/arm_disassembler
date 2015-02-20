@@ -11,10 +11,12 @@
 template <class T>
 class bit_pattern_table {
 private:
+  T default_case;
   std::vector<std::pair<bit_pattern, T>> pattern_pairs;
 
 public:
-  bit_pattern_table(bit_pattern* ps, T* ts, unsigned int n) {
+  bit_pattern_table(bit_pattern* ps, T* ts, T def, unsigned int n) {
+    default_case = def;
     for (unsigned int i = 0; i < n; i++) {
       pattern_pairs.push_back(std::pair<bit_pattern, T>(ps[i], ts[i]));
     }
@@ -26,8 +28,7 @@ public:
 	return pat_pair.second;
       }
     }
-    std::cout << "Error: No match in bit pattern table" << std::endl;
-    throw;
+    return default_case;
   }
 };
 

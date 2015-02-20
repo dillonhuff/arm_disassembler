@@ -26,7 +26,15 @@ void lsr_16_decode() {
   auto instr = lsr_16(0, 2, 3);
   auto correct = singleton_seq(instr, 0);
   auto res = disassemble_arm7m(0, LITTLE, undef_bytes, 2);
-  test_result(*(res.get()) == correct.get(), "decode lsl 16", "0x1813 does not decode to lsr r3, r2, #0");
+  test_result(*(res.get()) == correct.get(), "decode lsr 16", "0x1813 does not decode to lsr r3, r2, #0");
+}
+
+void asr_16_decode() {
+  byte undef_bytes[4] = {0x00, 10};
+  auto instr = asr_16(0, 0, 0);
+  auto correct = singleton_seq(instr, 0);
+  auto res = disassemble_arm7m(0, LITTLE, undef_bytes, 2);
+  test_result(*(res.get()) == correct.get(), "decode asr 16", "0x1000 does not decode to asr r0, r0, #0");
 }
 
 void all_disassembler_tests() {
@@ -35,6 +43,7 @@ void all_disassembler_tests() {
   undefined_32_instruction();
   lsl_16_decode();
   lsr_16_decode();
+  asr_16_decode();
 
   std::cout << "---------------------------------------------------------------" << std::endl << std::endl;
 }
