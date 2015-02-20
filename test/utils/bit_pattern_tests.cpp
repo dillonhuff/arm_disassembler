@@ -28,7 +28,7 @@ void match_any() {
 void match_arm32_start() {
   unsigned char bytes[4] = {0x4f, 0xf0};
   auto word16 = bit_field(LITTLE, 2, bytes, 2);
-  auto pat = bit_pattern(one, 4) + bit_pattern(any, 1);
+  auto pat = bit_pattern("1111x");
   auto prefix = word16.subfield(15, 11);
   test_result(pat.matches(&prefix), "arm 32 bit instruction start pattern", "0xf04f[31:27] does not match pattern 0x1111x");
 }
@@ -36,7 +36,7 @@ void match_arm32_start() {
 void match_arm32_misc_control() {
   unsigned char instr[4] = {0xef, 0xf3, 0x55, 0x8f};
   auto instr_bits = bit_field(LITTLE, 2, instr, 4);
-  auto pat = bit_pattern(one, 1) + bit_pattern(zero, 1) + bit_pattern(any, 11) + bit_pattern(one, 1);
+  auto pat = bit_pattern("10xxxxxxxxxxx1");
   auto class_bits = instr_bits.subfield(28, 15);
   test_result(pat.matches(&class_bits), "arm 32 instruction class match", "0xf3ef8f55[28:15] does not match bit pattern 0x10xxxxxxxxxxx1");
 }

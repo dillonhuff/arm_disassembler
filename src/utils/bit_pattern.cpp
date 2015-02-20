@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <iostream>
 
 #include "utils/bit_pattern.h"
 
@@ -9,6 +10,22 @@ bit_pattern::bit_pattern(std::vector<bit_p> bits) {
 bit_pattern::bit_pattern(bit_p val, unsigned int n) {
   for (unsigned int i = 0; i < n; i++) {
     pattern.push_back(val);
+  }
+}
+
+bit_pattern::bit_pattern(std::string pat_str) {
+  assert(pat_str.size() > 0);
+  for (unsigned int i = 0; i < pat_str.size(); i++) {
+    if (pat_str[i] == '1') {
+      pattern.push_back(one);
+    } else if (pat_str[i] == '0') {
+      pattern.push_back(zero);
+    } else if (pat_str[i] == 'x') {
+      pattern.push_back(any);
+    } else {
+      std::cout << "Error: " << pat_str << " is not a valid pattern string" << std::endl;
+      throw;
+    }
   }
 }
 

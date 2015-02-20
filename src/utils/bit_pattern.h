@@ -1,6 +1,7 @@
 #ifndef BIT_PATTERN_H_
 #define BIT_PATTERN_H_
 
+#include <string>
 #include <vector>
 
 #include "utils/bit_field.h"
@@ -15,6 +16,7 @@ class bit_pattern {
 
  public:
   bit_pattern(bit_p val, unsigned int n);
+  bit_pattern(std::string pat_str);
 
   bool matches(bit_field* bits);
   bit_pattern operator+(bit_pattern other);
