@@ -65,5 +65,5 @@ void all_bit_field_tests() {
   le_word16_hex_printout();
   le_two_word16_subfield_printout();
 
-  std::cout << "---------------------------------------------------------------" << std::endl;
+  std::cout << "---------------------------------------------------------------" << std::endl << std::endl;
 }
