@@ -33,6 +33,14 @@ void match_arm32_start() {
   test_result(pat.matches(&prefix), "arm 32 bit instruction start pattern", "0xf04f[31:27] does not match pattern 0x1111x");
 }
 
+void match_arm32_misc_control() {
+  unsigned char instr[4] = {0xef, 0xf3, 0x55, 0x8f};
+  auto instr_bits = bit_field(LITTLE, 2, instr, 4);
+  auto pat = bit_pattern(one, 1) + bit_pattern(zero, 1) + bit_pattern(any, 11) + bit_pattern(one, 1);
+  auto class_bits = instr_bits.subfield(28, 15);
+  test_result(pat.matches(&class_bits), "arm 32 instruction class match", "0xf3ef8f55[28:15] does not match bit pattern 0x10xxxxxxxxxxx1");
+}
+
 void all_bit_pattern_tests() {
   std::cout << "--------------------- bit_pattern tests -----------------------" << std::endl;
 
@@ -40,6 +48,7 @@ void all_bit_pattern_tests() {
   match_all_ones();
   match_any();
   match_arm32_start();
+  match_arm32_misc_control();
 
   std::cout << "---------------------------------------------------------------" << std::endl << std::endl;
 }
