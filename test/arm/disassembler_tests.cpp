@@ -22,7 +22,7 @@ void lsl_16_decode() {
 }
 
 void lsr_16_decode() {
-  byte undef_bytes[4] = {0x13, 0x18};
+  byte undef_bytes[4] = {0x13, 0x08};
   auto instr = lsr_16(0, 2, 3);
   auto correct = singleton_seq(instr, 0);
   auto res = disassemble_arm7m(0, LITTLE, undef_bytes, 2);
@@ -30,7 +30,7 @@ void lsr_16_decode() {
 }
 
 void asr_16_decode() {
-  byte undef_bytes[4] = {0x00, 10};
+  byte undef_bytes[4] = {0x00, 0x10};
   auto instr = asr_16(0, 0, 0);
   auto correct = singleton_seq(instr, 0);
   auto res = disassemble_arm7m(0, LITTLE, undef_bytes, 2);
