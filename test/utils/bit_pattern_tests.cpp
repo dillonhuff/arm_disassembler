@@ -25,12 +25,21 @@ void match_any() {
   test_result(pat.matches(&words), "any pattern length 40", "40 bit sequence doesn't match 40 bit any pattern");
 }
 
+void match_arm32_start() {
+  unsigned char bytes[4] = {0x4f, 0xf0};
+  auto word16 = bit_field(LITTLE, 2, bytes, 2);
+  auto pat = bit_pattern(one, 4) + bit_pattern(any, 1);
+  auto prefix = word16.subfield(15, 11);
+  test_result(pat.matches(&prefix), "arm 32 bit instruction start pattern", "0xf04f[31:27] does not match pattern 0x1111x");
+}
+
 void all_bit_pattern_tests() {
   std::cout << "--------------------- bit_pattern tests -----------------------" << std::endl;
 
   match_all_zeros();
   match_all_ones();
   match_any();
+  match_arm32_start();
 
   std::cout << "---------------------------------------------------------------" << std::endl << std::endl;
 }
