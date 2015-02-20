@@ -34,7 +34,7 @@ std::string instruction_sequence::assembly_string() {
   std::string assembly_code = "";
   unsigned int instruction_address = start_address;
   for (auto instr : instructions) {
-    assembly_code += "\t" + hex_num_to_string(8, ' ', instruction_address);
+    assembly_code += "\t" + hex_num_to_string(8, ' ', instruction_address) + ":";
     assembly_code += "\t" + instr.asm_string() + "\n";
     instruction_address += instr.width();
   }

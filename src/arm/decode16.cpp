@@ -11,15 +11,15 @@ bit_pattern thumb16_pats[NUM_INSTRS] = { bit_pattern("00000xxxxxxxxxxx"),
 					 bit_pattern("01000100xxxxxxxx"),
 					 bit_pattern("0001101xxxxxxxxx") };
 
-instruction_builder* builders[NUM_INSTRS] = { new name_builder("lsl"),
-					      new name_builder("lsr"),
-					      new name_builder("asr"),
-					      new name_builder("add"),
-					      new name_builder("add"),
-					      new name_builder("sub") };
+instruction_builder* builders[NUM_INSTRS] = { new name_builder("lsl", 16),
+					      new name_builder("lsr", 16),
+					      new name_builder("asr", 16),
+					      new name_builder("add", 16),
+					      new name_builder("add", 16),
+					      new name_builder("sub", 16) };
 
 bit_pattern_table<instruction_builder*> thumb16_table =
-  bit_pattern_table<instruction_builder*>(thumb16_pats, builders, new name_builder("unknown_16"), NUM_INSTRS);
+  bit_pattern_table<instruction_builder*>(thumb16_pats, builders, new name_builder("unknown_16", 16), NUM_INSTRS);
 
 instruction decode16(bit_field* word16) {
   auto instr_builder = thumb16_table.match(word16);

@@ -16,13 +16,22 @@ std::string instruction::asm_string() {
   return mnemonic;
 }
 
+//void instruction::set_bits(bit_field* new_bits) {
+  //  bits = new_bits->copy();
+//}
+
 void instruction::set_mnemonic(std::string new_mnemonic) {
   mnemonic = new_mnemonic;
+}
+
+void instruction::set_width(unsigned int new_width) {
+  byte_width = new_width;
 }
 
 instruction undefined_32() {
   auto instr = instruction();
   instr.set_mnemonic("undefined_32");
+  instr.set_width(4);
   return instr;
 }
 
