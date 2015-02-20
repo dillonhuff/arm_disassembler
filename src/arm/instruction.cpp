@@ -21,7 +21,15 @@ void instruction::set_mnemonic(std::string new_mnemonic) {
 }
 
 instruction undefined_32() {
-  return instruction();
+  auto instr = instruction();
+  instr.set_mnemonic("undefined_32");
+  return instr;
+}
+
+instruction undefined_16() {
+  auto instr = instruction();
+  instr.set_mnemonic("undefined_16");
+  return instr;
 }
 
 instruction lsl_16(int shift, int rm , int rd) {
