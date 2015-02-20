@@ -8,7 +8,7 @@ CC := g++-4.9
 endif
 
 ifeq ($(UNAME), Darwin)
-CC := clang
+CC := clang++
 endif
 
 LINKER := $(CC)
