@@ -41,6 +41,18 @@ void le_two_word16_printout() {
   test_result(two_word16.to_bit_string() == "00000010000000010000010000000011", "two consecutive word16 printouts", "printout of 0x02010403 is not 0000 0010 0000 0001 0000 0100 0000 0011");
 }
 
+void le_word16_hex_printout() {
+  unsigned char bytes[2] = {0x01, 0x23};
+  auto word16 = bit_field(LITTLE, 2, bytes, 2);
+  test_result(word16.to_hex_string() == "2301", "word16 hex printout", "printout of 0x2301 is not 2301");
+}
+
+void le_two_word16_subfield_printout() {
+  unsigned char bytes[4] = {0x12, 0x34, 0x56, 0x78};
+  auto two_word16 = bit_field(LITTLE, 2, bytes, 4);
+  test_result(two_word16.subfield(26, 13).to_bit_string() == "10000010010011", "two word16 subfield printout", "printout of subfield [26:13] of 0x34127856 is not 10000010010011");
+}
+
 void all_bit_field_tests() {
   std::cout << "---------------------- bit_field tests ------------------------" << std::endl;
 
@@ -50,6 +62,8 @@ void all_bit_field_tests() {
   le_25th_bit_word16_twice();
   le_word16_printout();
   le_two_word16_printout();
+  le_word16_hex_printout();
+  le_two_word16_subfield_printout();
 
   std::cout << "---------------------------------------------------------------" << std::endl;
 }
