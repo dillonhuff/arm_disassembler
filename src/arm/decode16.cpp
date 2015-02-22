@@ -15,11 +15,7 @@ bit_pattern thumb16_pats[NUM_INSTRS] = { bit_pattern("00000xxxxxxxxxxx"),
 					 bit_pattern("0001111xxxxxxxxx"),
 					 bit_pattern("00111xxxxxxxxxxx"),
 					 bit_pattern("00100xxxxxxxxxxx"),
-					 bit_pattern("00101xxxxxxxxxxx"),
-					 bit_pattern("0001110xxxxxxxxx"), // redundant
-					 bit_pattern("00110xxxxxxxxxxx"), // redundant
-					 bit_pattern("0001111xxxxxxxxx"), // redundant 
-					 bit_pattern("00111xxxxxxxxxxx") }; // redundant
+					 bit_pattern("00101xxxxxxxxxxx") };
 
 instruction_builder* builders[NUM_INSTRS] = { new name_builder("lsl", 16),
 					      new name_builder("lsr", 16),
@@ -32,12 +28,7 @@ instruction_builder* builders[NUM_INSTRS] = { new name_builder("lsl", 16),
 					      new name_builder("sub", 16),
 					      new name_builder("sub", 16),
 					      new name_builder("mov", 16),
-					      new name_builder("cmp", 16),
-					      new name_builder("add", 16),
-					      new name_builder("add", 16),
-					      new name_builder("sub", 16),
-					      new name_builder("sub", 16) };
-					      
+					      new name_builder("cmp", 16) };					      
 
 bit_pattern_table<instruction_builder*> thumb16_table =
   bit_pattern_table<instruction_builder*>(thumb16_pats, builders, new name_builder("unknown_16", 16), NUM_INSTRS);
