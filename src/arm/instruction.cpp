@@ -58,3 +58,9 @@ instruction asr_16(int shift, int rm , int rd) {
   instr.set_mnemonic("asr");
   return instr;
 }
+
+instruction cmp_thumb(int rn, int imm8) {
+  auto instr = instruction();
+  instr.set_mnemonic("cmp");
+  return instr;
+}
