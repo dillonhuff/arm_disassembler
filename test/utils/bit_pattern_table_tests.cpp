@@ -31,12 +31,22 @@ void default_pattern_match() {
   test_result(ptable.match(&bf) == 0, "pattern table default match", "expected result to be 0");
 }
 
+void vector_constructor_match() {
+  auto pats = std::vector<std::pair<bit_pattern, int>>();
+  pats.push_back(std::pair<bit_pattern, int>(bit_pattern("11111111"), 1));
+  auto ptable = bit_pattern_table<int>(pats, 0);
+  byte b[1] = {0xff};
+  auto bf = bit_field(LITTLE, 1, b, 1);
+  test_result(ptable.match(&bf) == 1, "pattern table vector constructor", "expected result to be 1");
+}
+
 void all_bit_pattern_table_tests() {
   std::cout << "--------------------- bit_pattern_table tests -----------------" << std::endl;
 
   one_pattern_table_match();
   multi_pattern_table_match();
   default_pattern_match();
+  vector_constructor_match();
 
   std::cout << "---------------------------------------------------------------" << std::endl << std::endl;
 }

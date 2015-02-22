@@ -2,7 +2,7 @@
 #include "arm/name_builder.h"
 #include "utils/bit_pattern_table.hpp"
 
-#define NUM_INSTRS 16
+#define NUM_INSTRS 12
 
 bit_pattern thumb16_pats[NUM_INSTRS] = { bit_pattern("00000xxxxxxxxxxx"),
 					 bit_pattern("00001xxxxxxxxxxx"),
@@ -28,7 +28,7 @@ instruction_builder* builders[NUM_INSTRS] = { new name_builder("lsl", 16),
 					      new name_builder("sub", 16),
 					      new name_builder("sub", 16),
 					      new name_builder("mov", 16),
-					      new name_builder("cmp", 16) };					      
+					      new name_builder("cmp", 16) };
 
 bit_pattern_table<instruction_builder*> thumb16_table =
   bit_pattern_table<instruction_builder*>(thumb16_pats, builders, new name_builder("unknown_16", 16), NUM_INSTRS);
