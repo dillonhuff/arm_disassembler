@@ -1,10 +1,10 @@
 UNAME := $(shell uname)
 DEP_CFLAGS := -O3 -g -Wall -Isrc/ -Itest/
 CFLAGS := $(DEP_CFLAGS)
-CFLAGS += -std=c++11
+CFLAGS += -std=c++0x
 
 ifeq ($(UNAME), Linux)
-CC := g++-4.9
+CC := g++
 endif
 
 ifeq ($(UNAME), Darwin)
