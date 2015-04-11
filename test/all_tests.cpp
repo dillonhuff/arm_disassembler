@@ -48,7 +48,7 @@ void disassemble_code(char* elf_file_name) {
   std::cout << "text_section address: " << hex_num_to_string(8, ' ', text_section->get_address()) << std::endl;
   std::cout << "text_section size: " << std::to_string(text_section->get_size()) << std::endl;
 
-  auto instructions = disassemble_arm7m(text_section->get_address(), LITTLE, (unsigned char*) text_section->get_data(), (unsigned int) text_section->get_size());
+  auto instructions = disassemble_arm6(text_section->get_address(), LITTLE, (unsigned char*) text_section->get_data(), (unsigned int) text_section->get_size());
 
   std::cout << instructions->assembly_string() << std::endl;
 }
