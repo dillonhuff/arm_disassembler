@@ -22,6 +22,10 @@ public:
     }
   }
 
+  bit_pattern_table(std::vector<std::pair<bit_pattern, T>> pat_pairs) {
+    pattern_pairs = pat_pairs;
+  }
+
   T match(bit_field* bits) {
     for (auto pat_pair : pattern_pairs) {
       if (pat_pair.first.matches(bits)) {
