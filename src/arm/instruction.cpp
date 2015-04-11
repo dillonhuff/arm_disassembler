@@ -27,6 +27,13 @@ std::string instruction::get_mnemonic() {
       mn += "b";
     }
     return mn;
+  } else if (instr_class == BRANCH) {
+    std::string mn = "";
+    mn += "b";
+    if (branch_l == ONE) {
+      mn += "l";
+    }
+    return mn;
   }
   return mnemonic;
 }
@@ -101,6 +108,22 @@ instruction strb_32() {
   instr.set_width(4);
   instr.set_lds_b(ONE);
   instr.set_lds_l(ZERO);
+  return instr;
+}
+
+instruction b_32() {
+  auto instr = instruction();
+  instr.set_instr_class(BRANCH);
+  instr.set_width(4);
+  instr.set_branch_l(ZERO);
+  return instr;
+}
+
+instruction bl_32() {
+  auto instr = instruction();
+  instr.set_instr_class(BRANCH);
+  instr.set_width(4);
+  instr.set_branch_l(ONE);
   return instr;
 }
 

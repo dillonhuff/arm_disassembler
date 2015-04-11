@@ -91,6 +91,18 @@ void arm6_strb32() {
   test_instruction_6m(bts, instr);
 }
 
+void arm6_b32() {
+  byte bts[4] = {0x00, 0x00, 0x00, 0x0a};
+  auto instr = b_32();
+  test_instruction_6m(bts, instr);
+}
+
+void arm6_bl32() {
+  byte bts[4] = {0x00, 0x00, 0x00, 0x0b};
+  auto instr = bl_32();
+  test_instruction_6m(bts, instr);
+}
+
 void all_disassembler_tests() {
   std::cout << "------------------------ disassembler tests -------------------" << std::endl;
 
@@ -101,6 +113,7 @@ void all_disassembler_tests() {
   arm6_str32();
   arm6_strb32();
   arm6_undef32();
+  arm6_b32();
   lsl_16_decode();
   lsr_16_decode();
   asr_16_decode();

@@ -7,7 +7,7 @@
 #include "utils/bit.h"
 #include "utils/bit_field.h"
 
-enum instruction_class { DATA_PROCESSING, LOAD_STORE_WD_OR_UB };
+enum instruction_class { DATA_PROCESSING, LOAD_STORE_WD_OR_UB, BRANCH };
 
 class instruction {
  protected:
@@ -15,6 +15,7 @@ class instruction {
   unsigned int byte_width;
   std::string mnemonic;
   bit lds_b, lds_l;
+  bit branch_l;
 
  public:
   //  instruction(bit_field* bits);
@@ -30,6 +31,7 @@ class instruction {
   void set_width(unsigned int new_width);
   void set_lds_b(bit new_val) { lds_b = new_val; }
   void set_lds_l(bit new_val) { lds_l = new_val; }
+  void set_branch_l(bit new_val) { branch_l = new_val; }
   void set_instr_class(instruction_class new_class) { instr_class = new_class; }
 };
 
@@ -42,6 +44,8 @@ instruction ldr_32();
 instruction ldrb_32();
 instruction str_32();
 instruction strb_32();
+instruction b_32();
+instruction bl_32();
 instruction lsl_16(int shift, int rm, int rd);
 instruction lsr_16(int shift, int rm, int rd);
 instruction asr_16(int shift, int rm, int rd);
