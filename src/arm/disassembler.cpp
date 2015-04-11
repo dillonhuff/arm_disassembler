@@ -3,6 +3,7 @@
 
 #include "arm/disassembler.h"
 #include "arm/decode16.h"
+#include "arm/decode32.h"
 #include "utils/bit_field.h"
 #include "utils/bit_pattern.h"
 
@@ -31,6 +32,22 @@ std::unique_ptr<instruction_sequence> disassemble_arm7m(unsigned int start_addr,
       instrs->add(decode16(&word16));
       i += 2;
     }
+  }
+  return std::unique_ptr<instruction_sequence>(instrs);
+}
+
+std::unique_ptr<instruction_sequence> disassemble_arm6(unsigned int start_addr, endianness end, byte* bytes, unsigned int n) {
+  if (end == BIG) {
+    std::cout << "Error: big endian not yet supported" << std::endl;
+    throw;
+  }
+
+  auto instrs = new instruction_sequence(start_addr);
+  unsigned int i = 0;
+  while (i < n) {
+    auto word32 = bit_field(end, 4, &(bytes[i]), 4);
+    instrs->add(decode_arm6_32(&word32));
+    i += 4;
   }
   return std::unique_ptr<instruction_sequence>(instrs);
 }

@@ -6,5 +6,6 @@
 #include "utils/endianness.h"
 
 std::unique_ptr<instruction_sequence> disassemble_arm7m(unsigned int start_address, endianness end, byte* bytes, unsigned int num_bytes);
+std::unique_ptr<instruction_sequence> disassemble_arm6(unsigned int start_addr, endianness end, byte* bytes, unsigned int n);
 
 #endif

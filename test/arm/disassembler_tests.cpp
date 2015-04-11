@@ -11,6 +11,12 @@ void test_instruction(byte* instr_bytes, instruction correct) {
   test_result(*(res.get()) == correct_seq.get(), "decode " + correct.asm_string(), "result is not " + correct.asm_string());
 }
 
+void test_instruction_6m(byte* instr_bytes, instruction correct) {
+  auto correct_seq = singleton_seq(correct, 0);
+  auto res = disassemble_arm6(0, LITTLE, instr_bytes, 4);
+  test_result(*(res.get()) == correct_seq.get(), "decode " + correct.asm_string(), "result is not " + correct.asm_string());
+}
+
 void undefined_32_instruction() {
   byte undef_bytes[4] = {0x00, 0xff, 0x00, 0x00};
   auto instr = undefined_32();
@@ -49,10 +55,17 @@ void cmp_decode() {
   test_instruction(bts, instr);
 }
 
+void arm6_and32() {
+  byte bts[4] = {0x00, 0x00, 0x10, 0x00};
+  auto instr = and_32();
+  test_instruction_6m(bts, instr);
+}
+
 void all_disassembler_tests() {
   std::cout << "------------------------ disassembler tests -------------------" << std::endl;
 
   undefined_32_instruction();
+  arm6_and32();
   lsl_16_decode();
   lsr_16_decode();
   asr_16_decode();
