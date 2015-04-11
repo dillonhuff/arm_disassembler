@@ -15,6 +15,11 @@ private:
   std::vector<std::pair<bit_pattern, T>> pattern_pairs;
 
 public:
+  bit_pattern_table(std::vector<std::pair<bit_pattern, T>> pat_pairs, T def) {
+    default_case = def;
+    pattern_pairs = pat_pairs;
+  }
+
   bit_pattern_table(bit_pattern* ps, T* ts, T def, unsigned int n) {
     default_case = def;
     for (unsigned int i = 0; i < n; i++) {

@@ -55,12 +55,12 @@ void disassemble_code(char* elf_file_name) {
 
 
 void run_all_tests() {
-  std::cout << "======================== All Tests =========================" << std::endl << std::endl;
+  std::cout << "========================= All Tests ===========================" << std::endl << std::endl;
 
   all_bit_field_tests();
   all_bit_pattern_tests();
   all_disassembler_tests();
   all_bit_pattern_table_tests();
 
-  std::cout << "============================================================" << std::endl;
+  std::cout << "===============================================================" << std::endl;
 }

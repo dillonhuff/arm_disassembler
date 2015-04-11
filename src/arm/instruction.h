@@ -31,5 +31,6 @@ instruction undefined_16();
 instruction lsl_16(int shift, int rm, int rd);
 instruction lsr_16(int shift, int rm, int rd);
 instruction asr_16(int shift, int rm, int rd);
+instruction cmp_thumb(int rn, int imm8);
 
 #endif
