@@ -1,8 +1,9 @@
 #include "arm/decode32.h"
+#include "arm/ld_st_word_or_ubyte_builder.h"
 #include "arm/name_builder.h"
 #include "utils/bit_pattern_table.hpp"
 
-#define NUM_ARM6_32_INSTRS 16
+#define NUM_ARM6_32_INSTRS 17
 
 bit_pattern arm6_32_pats[NUM_ARM6_32_INSTRS] = { bit_pattern("xxxx00x0000xxxxxxxxxxxxxxxxxxxxx"),
 						 bit_pattern("xxxx00x0001xxxxxxxxxxxxxxxxxxxxx"),
@@ -19,7 +20,9 @@ bit_pattern arm6_32_pats[NUM_ARM6_32_INSTRS] = { bit_pattern("xxxx00x0000xxxxxxx
 						 bit_pattern("xxxx00x1100xxxxxxxxxxxxxxxxxxxxx"),
 						 bit_pattern("xxxx00x1101xxxxxxxxxxxxxxxxxxxxx"),
 						 bit_pattern("xxxx00x1110xxxxxxxxxxxxxxxxxxxxx"),
-						 bit_pattern("xxxx00x1111xxxxxxxxxxxxxxxxxxxxx") };
+						 bit_pattern("xxxx00x1111xxxxxxxxxxxxxxxxxxxxx"),
+						 // load / store instructions
+						 bit_pattern("xxxx01xxxxxxxxxxxxxxxxxxxxxxxxxx") };
 
 instruction_builder* arm6_32_builders[NUM_ARM6_32_INSTRS] = { new name_builder("and", 32),
 							      new name_builder("eor", 32),
@@ -36,7 +39,8 @@ instruction_builder* arm6_32_builders[NUM_ARM6_32_INSTRS] = { new name_builder("
 							      new name_builder("orr", 32),
 							      new name_builder("mov", 32),
 							      new name_builder("bic", 32),
-							      new name_builder("mvn", 32) };
+							      new name_builder("mvn", 32),
+							      new ld_st_word_or_ubyte_builder() };
 
 auto arm6_32_table =
   bit_pattern_table<instruction_builder*>(arm6_32_pats, arm6_32_builders, new name_builder("unknown_32", 32), NUM_ARM6_32_INSTRS);
