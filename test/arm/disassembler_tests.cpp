@@ -61,11 +61,18 @@ void arm6_and32() {
   test_instruction_6m(bts, instr);
 }
 
+void arm6_undef32() {
+  byte bts[4] = {0xff, 0xff, 0xff, 0xff};
+  auto instr = unknown_32();
+  test_instruction_6m(bts, instr);
+}
+
 void all_disassembler_tests() {
   std::cout << "------------------------ disassembler tests -------------------" << std::endl;
 
   undefined_32_instruction();
   arm6_and32();
+  arm6_undef32();
   lsl_16_decode();
   lsr_16_decode();
   asr_16_decode();

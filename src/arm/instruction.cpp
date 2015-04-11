@@ -35,6 +35,13 @@ instruction undefined_32() {
   return instr;
 }
 
+instruction unknown_32() {
+  auto instr = instruction();
+  instr.set_mnemonic("unknown_32");
+  instr.set_width(4);
+  return instr;
+}
+
 instruction and_32() {
   auto instr = instruction();
   instr.set_mnemonic("and");

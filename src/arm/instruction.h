@@ -27,6 +27,7 @@ class instruction {
 
 
 instruction undefined_32();
+instruction unknown_32();
 instruction and_32();
 instruction undefined_16();
 instruction lsl_16(int shift, int rm, int rd);
