@@ -86,6 +86,24 @@ instruction ldrb_32() {
   return instr;
 }
 
+instruction str_32() {
+  auto instr = instruction();
+  instr.set_instr_class(LOAD_STORE_WD_OR_UB);
+  instr.set_width(4);
+  instr.set_lds_b(ZERO);
+  instr.set_lds_l(ZERO);
+  return instr;
+}
+
+instruction strb_32() {
+  auto instr = instruction();
+  instr.set_instr_class(LOAD_STORE_WD_OR_UB);
+  instr.set_width(4);
+  instr.set_lds_b(ONE);
+  instr.set_lds_l(ZERO);
+  return instr;
+}
+
 instruction undefined_16() {
   auto instr = instruction();
   instr.set_mnemonic("undefined_16");
